@@ -1,24 +1,25 @@
+
 \c employee_data;
 
-CREATE TABLE department(
-id SERIAL PRIMARY KEY,
-name VARCHAR(30) UNIQUE NOT NULL
+-- Create department table
+CREATE TABLE IF NOT EXISTS department (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE role(
+-- Create role table
+CREATE TABLE IF NOT EXISTS job_role (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(30) UNIQUE NOT NULL,
-    salary DECIMAL NOT NULL,
-    department_id INTEGER NOT NULL,
-     CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES department(id)
-)
+    title VARCHAR(100) NOT NULL,
+    salary INT NOT NULL,
+    department_id INT REFERENCES department(id)
+);
 
-CREATE TABLE employee(
+-- Create employee table
+CREATE TABLE IF NOT EXISTS employee (
     id SERIAL PRIMARY KEY,
-    first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30) NOT NULL,
-    role_id INTEGER NOT NULL,
-    manager_id INTEGER,
-     CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(id),
-    CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employee(id)
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    role_id INT REFERENCES job_role(id),
+    manager_id INT REFERENCES employee(id)
 );

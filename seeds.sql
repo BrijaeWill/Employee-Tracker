@@ -1,13 +1,13 @@
 -- Prepopulate departments
-INSERT INTO department (name)
+INSERT INTO department(name)
 VALUES
     ('Engineering'),
     ('Finance'),
     ('Legal'),
     ('Sales');
 
--- Prepopulate roles
-INSERT INTO role (title, salary, department_id)
+-- Prepopulate role
+INSERT INTO job_role(title, salary, department_id)
 VALUES
     ('Software Engineer', 85000, 1),
     ('Accountant', 60000, 2),
